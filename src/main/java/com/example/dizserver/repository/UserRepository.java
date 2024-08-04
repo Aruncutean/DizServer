@@ -1,0 +1,21 @@
+package com.example.dizserver.repository;
+
+import com.example.dizserver.model.Post;
+import com.example.dizserver.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends MongoRepository<User, String> {
+    Optional<User> findByUserName(String userName);
+    Optional<User> findByName(String name);
+    Optional<User> findByEmail(String email);
+    Optional<User> findUserById(String id);
+    List<User> findByUserNameContainingIgnoreCase(String userName, Pageable pageable);
+}
